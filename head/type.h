@@ -1,9 +1,10 @@
 
-
+enum {MAX_GEMS = 14};
 
 
 // (f) モンスター
-typedef struct MONSTER {
+typedef struct MONSTER 
+{
   char* name;
   Element element;
   int maxhp;
@@ -13,13 +14,15 @@ typedef struct MONSTER {
 } Monster;
 
 // (g)ダンジョン
-typedef struct DUNGEON {
+typedef struct DUNGEON 
+{
   Monster* monsters;
   const int numMonsters;
 } Dungeon;
 
 // (h)パーティ
-typedef struct PARTY {
+typedef struct PARTY 
+{
   char*       playerName;   // HINT: プレイヤー名を格納するメンバ
   Monster*    monsters;     // HINT: 味方モンスター配列の先頭アドレスを格納するメンバ
   const int   monsterNum;   // HINT: 味方モンスター数を格納するメンバ
@@ -27,3 +30,13 @@ typedef struct PARTY {
   int         hp;           // HINT: HPを格納するメンバ
   int         defense;      // HINT: 防御力（不変）を格納するメンバ
 } Party;
+
+// (i)BattleField構造体
+typedef struct BattleField 
+{
+  Monster* bfMonster;
+  Party*   bfParty;
+  Element  bfGems[MAX_GEMS];
+} BattleField;
+
+
