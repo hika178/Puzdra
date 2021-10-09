@@ -129,3 +129,56 @@ void printMonsterName(Monster* pMonster)
   printf("%c%s%c", symbol, pMonster->name, symbol);
   printf("\x1b[0m");
 }
+
+// 現在のバトルフィールドの状況を画面に映す関数
+void showBattleField(BattleField* pBF)
+{
+  printf("------------------------------\n\n");
+  printf("          ");
+  printMonsterName(pBF->bfEnemy->name);
+  printf("\n       HP= %4d / %4d\n", pBF->bfEnemy->hp, pBF->bfEnemy->maxhp);
+  printf("\n\n");
+  for(int i = 0; i < pBF->bfParty->monsterNum; i++) {
+    printMonsterName(&(pBF->bfParty->monsters[i]));
+    printf("  ");
+  }
+  printf("\n");
+  printf("       HP= %4d / %4d\n", pBF->bfParty->hp, pBF->bfParty->maxHp);
+  printf("------------------------------\n");
+  printf(" ");
+  for(int i = 0; i < MAX_GEMS; i++ ){
+    printf("%c ", 'A'+i);
+  }
+  printf("\n");
+  printGems(pBF->bfGems);
+  printf("------------------------------\n");
+}
+
+// 宝石をランダムに発生させる関数
+void fillGems(Element* bfGems)
+{
+  int i;
+  for (i=0;i<MAX_GEMS;i++)
+  {
+    bfGems[i] = rand() % EMPTY;
+  }
+}
+
+// 宝石一個分を画面に表示する
+void printGem(Element e)
+{
+  printf("\x1b[30m");       // 黒文字
+  printf("\x1b[4%dm", ELEMENT_COLORS[e]); // 属性色背景
+  printf("%c", ELEMENT_SYMBOLS[e]);
+  printf("\x1b[0m");        // 色指定解除
+}
+
+// 宝石14個を画面に表示する
+void printGems(Element* pGems)
+{
+  int i=0;
+  for (i;i<MAX_GEMS;i++)
+  {
+    printGem(pGems);
+  }
+}

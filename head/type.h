@@ -34,7 +34,7 @@ typedef struct PARTY
 // (i)BattleField構造体
 typedef struct BattleField 
 {
-  Monster* bfMonster;
+  Monster* bfEnemy;
   Party*   bfParty;
   Element  bfGems[MAX_GEMS];
 } BattleField;
